@@ -1,0 +1,86 @@
+Build a single-page, mobile-responsive landing site using Next.js + Tailwind CSS for a fitness & physiotherapy booking platform.
+
+Design goals: clean, modern, calm, trustworthy, conversion-focused. Rounded corners, subtle shadows, generous white space, smooth scrolling, and small micro-interactions on hover/in-view.
+
+Color palette (use as Tailwind custom colors / CSS variables and apply consistently):
+• Primary (teal): #3FB6A8
+• Secondary (sky blue): #4FA3D1
+• Accent (coral for CTAs): #FF6F61
+• Background (off-white): #FAFAFA
+• Text (charcoal): #333333
+
+Typography: modern sans-serif (e.g., Inter). Maintain strong hierarchy (H1 → H3, body, small).
+
+Accessibility: high contrast, focus states, aria-* labels, keyboard-navigable, descriptive alt text.
+
+Page structure (one page, anchored sections):
+
+Sticky Nav (logo left, right-side links: Problem, Benefits, Solution, How It Works, Why Us, Trust, FAQ; CTA button “Join the Waitlist” scrolls to form).
+
+Hero (split layout):
+
+H1: “Safe, Personalized Strength & Mobility Training — At Your Home”
+
+Subhead (1–2 lines).
+
+Email capture (input + primary Accent CTA button).
+
+Support text: “No spam. Unsubscribe anytime.”
+
+Right: illustrative image placeholder (physio training a client at home).
+
+Problem (brief paragraph + 3 bullets).
+
+Why This Matters (3 benefit cards with icons).
+
+Our Solution (split layout: image left, text right; 3 bullets: Safe, Convenient, Effective).
+
+How It Works (4 horizontal step cards with icons: Tell us about you → Match with verified physio-trainer → Book conveniently → Train & track progress).
+
+Why We’re Different (4 feature cards: Only certified physiotherapists, Safety-first programs, Transparent pricing, Local consistent support).
+
+Trust Builders (logo strip placeholders + short credibility statements).
+
+FAQ (accordion with 4–6 Q&As; e.g., Is this safe with knee pain? Do I need equipment? Can I choose my trainer?).
+
+Final CTA (big headline, subheadline, email capture form again, privacy note).
+
+Footer (logo, mini nav, copyright, placeholder links).
+
+Behavior & UX details:
+• Smooth scroll to sections.
+• Animate section reveal on scroll (small translate/opacity).
+• Button/CTA hover states; focus rings for accessibility.
+• Sticky nav changes background on scroll.
+
+Form handling:
+• Validate email on client side; on submit, mock API (/api/subscribe) that logs/stores to a local JSON file or prints to console, then show success toast/state.
+• Disable button while submitting; show inline error for invalid email.
+
+Tech setup:
+• Next.js App Router, Tailwind configured with custom theme colors from palette.
+• Components folder with: Nav.tsx, Hero.tsx, Problem.tsx, Benefits.tsx, Solution.tsx, HowItWorks.tsx, Differentiators.tsx, Trust.tsx, FAQ.tsx, FinalCTA.tsx, Footer.tsx.
+• Reusable Container and SectionHeading components.
+• Icons via react-icons (placeholders OK).
+• Simple toast via a lightweight library or custom.
+• SEO: <head> with title, meta description, Open Graph tags, favicon placeholder.
+
+Styling guidance:
+• Background overall: #FAFAFA.
+• Headings/text: #333333.
+• Primary UI accents (links, highlights): teal #3FB6A8.
+• Secondary elements (dividers, subtle badges): sky blue #4FA3D1.
+• CTAs (all primary buttons): coral #FF6F61 with white text; hover → slightly darker coral, focus ring teal.
+• Cards: white surface, soft shadow, 12–16px radius.
+
+Sample copy (use placeholders, but wire real text slots):
+• Hero subhead: “We connect you with certified physiotherapist-trainers who understand your body and goals—so you can get stronger, stay active, and live pain-free.”
+• Problem headline: “Fitness that ignores your health history can do more harm than good.”
+• FAQ example Q: “Do I need equipment?” A: “Not necessarily—your trainer will adapt to what you have.”
+
+Deliverables:
+• A working Next.js project with all sections on /.
+• Tailwind theme extended with the palette.
+• Mock /api/subscribe route that accepts { email }.
+• Clean, commented code; easily swappable content (a content.ts or content.json is great).
+• Looks polished on mobile and desktop.
