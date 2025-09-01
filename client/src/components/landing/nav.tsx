@@ -37,13 +37,12 @@ export default function Nav() {
   };
 
   const navLinks = [
-    { href: "problem", label: "Problem" },
     { href: "benefits", label: "Benefits" },
     { href: "solution", label: "Solution" },
-    { href: "how-it-works", label: "How It Works" },
+    { href: "how-it-works", label: "How We Work" },
     { href: "why-us", label: "Why Us" },
-    { href: "trust", label: "Trust" },
     { href: "faq", label: "FAQ" },
+    { href: "contact", label: "Contact Us" },
   ];
 
   return (
@@ -63,7 +62,7 @@ export default function Nav() {
               <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">S</span>
               </div>
-              <span className="text-xl font-semibold text-charcoal">SafeFit</span>
+              <span className="text-xl font-semibold text-charcoal">Healio</span>
             </div>
           </div>
 

@@ -23,7 +23,7 @@ export default function Footer() {
   const legalLinks = [
     { href: "#", label: "Privacy Policy" },
     { href: "#", label: "Terms of Service" },
-    { href: "#", label: "Contact Us" },
+    { href: "#contact", label: "Contact Us", onClick: () => scrollToSection("contact") },
   ];
 
   return (
@@ -65,11 +65,16 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
-                <li key={link.label}>
+                <li key={link.href}>
                   <a
                     href={link.href}
-                    className="hover:text-primary-teal transition-colors duration-200"
-                    data-testid={`footer-legal-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                    onClick={(e) => {
+                      if (link.onClick) {
+                        e.preventDefault();
+                        link.onClick();
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
                   >
                     {link.label}
                   </a>
@@ -81,7 +86,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400" data-testid="footer-copyright">
-            &copy; 2024 {content.footer.companyName}. All rights reserved.
+            &copy; 2025 {content.footer.companyName}. All rights reserved.
           </p>
         </div>
       </Container>

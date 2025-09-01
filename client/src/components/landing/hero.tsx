@@ -71,7 +71,8 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-fade-in-up">
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-charcoal mb-6 leading-tight" data-testid="hero-title">
-              {content.hero.title}{" "}
+              {content.hero.title}
+              <br />
               <span className="text-primary-teal">{content.hero.titleHighlight}</span>
             </h1>
             <p className="text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed" data-testid="hero-subtitle">
@@ -106,14 +107,18 @@ export default function Hero() {
                 {subscriptionMutation.isPending ? "Joining..." : content.hero.ctaText}
               </Button>
             </form>
-            <p className="text-sm text-gray-500" data-testid="hero-privacy-text">
-              {content.hero.privacyText}
-            </p>
+            <div className="text-sm text-gray-500" data-testid="hero-privacy-text">
+              {content.hero.privacyText.split('\n').map((line, i) => (
+                <p key={i} className={`${i > 0 ? 'mt-1' : ''} ${i === 0 ? 'font-bold text-primary-teal' : ''}`}>
+                  {line}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="animate-fade-in lg:order-last">
             <img
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+              src="Image4.jpeg"
               alt="Physiotherapist training client at home"
               className="rounded-2xl shadow-2xl w-full h-auto transform hover:scale-105 transition-transform duration-300"
               data-testid="hero-image"

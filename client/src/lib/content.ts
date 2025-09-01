@@ -1,92 +1,93 @@
 export const content = {
   hero: {
-    title: "Safe, Personalized Strength & Mobility Training —",
-    titleHighlight: "At Your Home",
-    subtitle: "We connect you with certified physiotherapist-trainers who understand your body and goals—so you can get stronger, stay active, and live pain-free.",
-    ctaText: "Get Started",
-    privacyText: "No spam. Unsubscribe anytime."
+    title: "Stay Active, Strong & Pain-Free -\n",
+    titleHighlight: "\nRight at Home",
+    subtitle: "We connect you with certified physiotherapist-trainers who understand your body and goals-so you can get stronger, stay active, and live pain-free.",
+    ctaText: "Join the Waitlist",
+    privacyText: "Join the waitlist and get 50% off your first session\nNo spam. Unsubscribe anytime."
+
   },
   
   problem: {
     title: "Fitness that ignores your health history can do more harm than good",
-    subtitle: "Traditional fitness programs don't account for your injuries, limitations, or health conditions. That's why so many people get hurt or give up on their fitness goals.",
+    subtitle: "Generic programs don’t consider old injuries, joint wear, or health conditions. That’s why so many people end up sore, frustrated, or quitting altogether.",
     issues: [
       {
         title: "Generic Programs Cause Injury",
-        description: "One-size-fits-all workouts ignore your unique body and health conditions"
+        description: "Ignoring your body’s unique needs can cause injury."
       },
       {
-        title: "No Professional Guidance", 
-        description: "YouTube videos and apps can't assess your form or adapt to your needs"
+        title: "No Expert Supervision", 
+        description: "Apps and videos can’t see your form or adjust to you."
       },
       {
-        title: "Inconsistent Results",
-        description: "Without proper progression and accountability, you plateau or give up"
+        title: "No Steady Progress",
+        description: "Without the right plan and accountability, results fade"
       }
     ]
   },
 
   benefits: {
     title: "Why This Matters",
-    subtitle: "Health-focused training isn't just safer—it's more effective for long-term results.",
+    subtitle: "Health-focused training isn't just safer-it's more effective for long-term results.",
     benefits: [
       {
-        title: "Injury Prevention",
-        description: "Our physiotherapist-trainers understand anatomy and biomechanics to keep you safe while building strength."
+        title: "Prevent Injuries Before They Start",
+        description: "Every plan is designed around your health history"
       },
       {
-        title: "Faster Progress",
-        description: "Personalized programs that adapt to your body lead to better results in less time."
+        title: "See Results You Can Feel",
+        description: "Personalized programs adapt to your progress each week."
       },
       {
-        title: "Long-term Health",
-        description: "Build sustainable habits that support your health and quality of life for years to come."
+        title: "Stay Healthy for the Long Run",
+        description: "Build strength and habits that keep you independent."
       }
     ]
   },
 
   solution: {
     title: "Our Solution",
-    subtitle: "We bridge the gap between healthcare and fitness by connecting you with certified physiotherapist-trainers who bring their expertise directly to your home.",
+    subtitle: "Think of us as the safest way to get fitter-without leaving home. Our physiotherapist-trainers bring clinical knowledge and proven exercise methods to you, so you can move better, stay active, and enjoy life without pain.",
     features: [
       {
         title: "Safe",
-        description: "Every trainer is a licensed physiotherapist who understands injury prevention and rehabilitation"
+        description: "Trained to protect your joints, prevent injuries, and support recovery."
       },
       {
         title: "Convenient", 
-        description: "No commute, no crowded gyms—just professional training in the comfort of your own space"
+        description: "Sessions at home-no travel, no gym crowds"
       },
       {
         title: "Effective",
-        description: "Personalized programs that evolve with your progress and adapt to your specific goals"
+        description: "Programs grow with you, so you keep improving."
       }
     ]
   },
 
   howItWorks: {
     title: "How It Works",
-    subtitle: "Getting started is simple. We handle the matching and scheduling—you focus on getting stronger.",
+    subtitle: "Getting started is simple. We handle the matching and scheduling-you focus on getting stronger.",
     steps: [
       {
         step: 1,
-        title: "Tell us about you",
-        description: "Share your health history, goals, and preferences through our detailed questionnaire"
+        title: "Tell Us About You",
+        description: "Share your goals, health history, and preferences."
       },
       {
         step: 2,
-        title: "Match with verified physio-trainer",
-        description: "We pair you with a certified physiotherapist-trainer who specializes in your needs"
+        title: "Get Your Perfect Match",
+        description: "We connect you with a physio-trainer who fits your needs."
       },
       {
         step: 3,
-        title: "Book conveniently", 
-        description: "Schedule sessions that fit your lifestyle through our easy-to-use booking platform"
+        title: "Book in Minutes", 
+        description: "Pick times that work for you."
       },
       {
         step: 4,
-        title: "Train & track progress",
-        description: "Enjoy personalized sessions and watch your strength and mobility improve safely"
+        title: "See & Feel the Change",
+        description: "Track your progress and enjoy moving with ease."
       }
     ]
   },
@@ -96,20 +97,20 @@ export const content = {
     subtitle: "We're not just another fitness app. We're a healthcare-first platform built by professionals who understand the importance of safe, effective training.",
     features: [
       {
-        title: "Only Certified Physiotherapists",
-        description: "Every trainer holds professional licensing and continuing education in movement therapy"
+        title: "Only Licensed Physiotherapists",
+        description: "Every trainer is a qualified healthcare professional."
       },
       {
-        title: "Safety-First Programs",
-        description: "All exercises are screened for safety and adapted to your specific health conditions"
+        title: "Safety Comes First",
+        description: "Exercises screened for your health needs."
       },
       {
-        title: "Transparent Pricing",
-        description: "No hidden fees, no contracts—just clear, fair pricing for professional healthcare"
+        title: "Clear, Fair Pricing",
+        description: "No surprises-just professional care at a fair rate."
       },
       {
-        title: "Local Consistent Support",
-        description: "Work with the same local professional who learns your body and builds lasting relationships"
+        title: "Consistent Support",
+        description: "Work with the same trainer who knows your body."
       }
     ]
   },
@@ -126,44 +127,44 @@ export const content = {
 
   faq: {
     title: "Frequently Asked Questions",
-    subtitle: "We've answered the most common questions about our service. Can't find what you're looking for? Contact us directly.",
+    subtitle: "We've answered the most common questions about Healio. Still wondering about something? Contact us and we'll be happy to help.",
     questions: [
       {
         question: "Is this safe if I have knee pain or other injuries?",
-        answer: "Absolutely. Our physiotherapist-trainers are specifically trained to work with injuries and chronic conditions. They'll assess your condition, design safe modifications, and help you build strength without aggravating existing issues. Many of our clients actually find relief from chronic pain through our programs."
+        answer: "Our trainers are highly qualified in safe movement and injury prevention. They’ll adapt every exercise to your needs so you can get stronger without making existing issues worse. Many clients have even noticed less daily pain after starting."
       },
       {
         question: "Do I need equipment?",
-        answer: "Not necessarily—your trainer will adapt to what you have. We start with bodyweight exercises and everyday items like water bottles or towels. If you want to invest in equipment, your trainer can recommend affordable options based on your goals and space."
+        answer: "No special equipment needed. We start with bodyweight exercises and simple household items like water bottles or towels. If you’d like to add equipment later, your trainer can suggest affordable, space-friendly options."
       },
       {
         question: "Can I choose my trainer?",
-        answer: "Yes! We'll match you with 2-3 qualified trainers based on your needs, location, and preferences. You can review their profiles, read about their specialties, and choose who feels like the best fit. If you're not completely satisfied, we'll help you find a different trainer."
+        answer: "Yes. We’ll suggest a few qualified trainers based on your needs and preferences. You can read their profiles and choose who feels right. If it’s not the perfect fit, we’ll help you find someone else."
       },
       {
         question: "How much does it cost?",
-        answer: "Our sessions are competitively priced compared to traditional personal training, but offer much more value through healthcare expertise. Pricing varies by location and session frequency. We'll share exact pricing when we match you with local trainers. No contracts or hidden fees—pay as you go."
+        answer: "Our sessions are fairly priced and offer more value through specialized training. Prices vary depending on location and how often you train. We’ll share exact pricing before you commit-no contracts, no hidden fees."
       },
       {
         question: "What if I'm a complete beginner?",
-        answer: "Perfect! Our trainers excel at working with beginners because they understand how to build strength safely from the ground up. You'll start with basic movements and progress at your own pace. Many of our clients had never exercised regularly before starting with us."
+        answer: "Perfect. Many of our clients are starting from scratch. Your trainer will guide you through simple, safe movements and help you progress at your own pace."
       },
       {
         question: "How do you ensure trainer quality?",
-        answer: "All our trainers must hold current physiotherapy licenses, pass background checks, and complete our safety certification program. We continuously monitor session quality through client feedback and regular check-ins. Our trainers also participate in ongoing education to stay current with best practices."
+        answer: "All our trainers are experienced professionals with advanced training in safe movement and injury prevention. They pass background checks, follow our safety standards, and continue learning the latest techniques."
       }
     ]
   },
 
   finalCTA: {
-    title: "Ready to Train Safely and Effectively?",
-    subtitle: "Join our waitlist to be among the first to experience personalized physiotherapy training at home.",
-    ctaText: "Join Waitlist",
-    privacyText: "We respect your privacy. No spam, unsubscribe anytime."
+    title: "Start Moving Better, Feeling Better",
+    subtitle: "Join our waitlist to be first in line for Healio’s personalized, at-home strength and mobility coaching-designed just for you",
+    ctaText: "Join The Waitlist",
+    privacyText: "Join the waitlist and get 50% off your first session\nNo spam. Unsubscribe anytime."
   },
 
   footer: {
-    companyName: "SafeFit",
-    description: "Safe, personalized strength & mobility training with certified physiotherapist-trainers, delivered to your home."
+    companyName: "Healio",
+    description: "Safe, personalized strength and mobility coaching from highly trained professionals-brought straight to your home."
   }
 };

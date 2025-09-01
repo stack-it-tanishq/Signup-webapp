@@ -112,9 +112,13 @@ export default function FinalCTA() {
                 {subscriptionMutation.isPending ? "Joining..." : content.finalCTA.ctaText}
               </Button>
             </form>
-            <p className="text-white/80 text-sm" data-testid="final-cta-privacy-text">
-              {content.finalCTA.privacyText}
-            </p>
+            <div className="text-white/80 text-sm" data-testid="final-cta-privacy-text">
+              {content.finalCTA.privacyText.split('\n').map((line, i) => (
+                <p key={i} className={`${i > 0 ? 'mt-1' : ''} ${i === 0 ? 'font-bold text-white' : ''}`}>
+                  {line}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
       </Container>
