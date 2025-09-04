@@ -2,20 +2,44 @@ import React, { useState } from "react";
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function Contact() {
+  const { toast } = useToast();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Hook up to backend or email service
-    // For now, just log and clear
-    console.log({ name, email, message });
-    setName("");
-    setEmail("");
-    setMessage("");
+    setIsSubmitting(true);
+    
+    try {
+      // TODO: Hook up to backend or email service
+      console.log({ name, email, message });
+      
+      // Show success toast
+      toast({
+        title: "📩 Message sent!",
+        description: "Our team will reply within 24 hours - keep an eye on your inbox.",
+        duration: 5000,
+      });
+      
+      // Clear form
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -88,14 +112,15 @@ export default function Contact() {
               />
             </div>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full md:w-auto px-8 py-6 text-lg font-semibold bg-gradient-to-r from-primary-teal to-emerald-500 text-white hover:opacity-90 transition-opacity"
-              data-testid="contact-submit"
+            <Button 
+              type="submit" 
+              className="w-full" 
+              data-testid="contact-submit-btn"
+              disabled={isSubmitting}
             >
-              Send Message
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </Button>
+            <Toaster />
           </form>
 
           <p className="text-sm text-gray-500 mt-6 text-center">
