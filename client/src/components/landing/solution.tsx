@@ -24,7 +24,12 @@ export default function Solution() {
               {content.solution.title}
             </h2>
             <p className="text-lg text-gray-600 mb-8" data-testid="solution-subtitle">
-              {content.solution.subtitle}
+              {content.solution.subtitle.split('Physiotherapist trainers').map((part, i) => (
+                <span key={i}>
+                  {i > 0 && <span className="text-primary-teal font-medium">Physiotherapist trainers</span>}
+                  {part}
+                </span>
+              ))}
             </p>
 
             <div className="space-y-6">

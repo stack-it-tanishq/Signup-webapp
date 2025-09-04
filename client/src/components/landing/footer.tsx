@@ -1,5 +1,7 @@
 import Container from "@/components/ui/container";
 import { content } from "@/lib/content";
+import { Link } from "wouter";
+import { smoothScrollTo } from "@/utils/smooth-scroll";
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
@@ -14,15 +16,20 @@ export default function Footer() {
   };
 
   const quickLinks = [
-    { href: "problem", label: "Problem" },
-    { href: "benefits", label: "Benefits" },
-    { href: "solution", label: "Solution" },
-    { href: "faq", label: "FAQ" },
+    { href: "#problem", label: "Problem" },
+    { href: "#nutrition", label: "Benefits" },
+    { href: "#hero", label: "Solution" },
+    { href: "#faq", label: "FAQ" },
   ];
 
+  const handleFooterClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    smoothScrollTo(id, 80);
+  };
+
   const legalLinks = [
-    { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Terms of Service" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-of-service", label: "Terms of Service" },
     { href: "#contact", label: "Contact Us", onClick: () => scrollToSection("contact") },
   ];
 
@@ -33,7 +40,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+                <span className="text-white font-bold text-lg">H</span>
               </div>
               <span className="text-xl font-semibold text-white" data-testid="footer-logo">
                 {content.footer.companyName}
@@ -47,17 +54,20 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="hover:text-primary-teal transition-colors duration-200"
-                    data-testid={`footer-link-${link.href}`}
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
+              {quickLinks.map((link) => {
+                const id = link.href.replace('#', '');
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                      onClick={(e) => handleFooterClick(e, id)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -66,18 +76,14 @@ export default function Footer() {
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      if (link.onClick) {
-                        e.preventDefault();
-                        link.onClick();
-                      }
-                    }}
-                    className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={link.onClick}
+                    className="text-gray-400 hover:text-white transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

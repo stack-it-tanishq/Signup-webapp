@@ -1,117 +1,181 @@
 export const content = {
   hero: {
-    title: "Stay Active, Strong & Pain-Free -\n",
-    titleHighlight: "\nRight at Home",
-    subtitle: "We connect you with certified physiotherapist-trainers who understand your body and goals-so you can get stronger, stay active, and live pain-free.",
-    ctaText: "Join the Waitlist",
-    privacyText: "Join the waitlist and get 50% off your first session\nNo spam. Unsubscribe anytime."
-
+    title: "Your Coach - Your Plan",
+    titleHighlight: "Your Results",
+    subtitle: "Safe, personal training that works with your body - not against it.",
+    ctaText: "Find Your Perfect Coach",
+    secondaryCta: "How We Work",
+    privacyText: "Join the waitlist and get 50% off your first session\nNo spam. Unsubscribe anytime.",
+    comparison: {
+      left: {
+        title: "Generic Fitness Programs",
+        points: [
+          "One-size-fits-all programs",
+          "No personal attention",
+          "Risk of injury",
+          "Hard to stay motivated",
+          "Nutrition? Barely mentioned"
+        ]
+      },
+      right: {
+        title: "Healio Program",
+        points: [
+          "Personalized for your body",
+          "Expert 1-on-1 guidance",
+          "Safe, joint-friendly exercises",
+          "Real, lasting results",
+          "Nutrition support that cares for you like family"
+        ]
+      }
+    }
   },
   
   problem: {
-    title: "Fitness that ignores your health history can do more harm than good",
-    subtitle: "Generic programs don’t consider old injuries, joint wear, or health conditions. That’s why so many people end up sore, frustrated, or quitting altogether.",
+    title: "Why Most Fitness Plans Don't Work For You",
+    subtitle: "If you've tried and quit before, it's not your fault - most programs are built wrong.",
     issues: [
       {
-        title: "Generic Programs Cause Injury",
-        description: "Ignoring your body’s unique needs can cause injury."
+        title: "Too Generic",
+        description: "One-size-fits-all often causes injury.",
+        icon: "scaling"
       },
       {
-        title: "No Expert Supervision", 
-        description: "Apps and videos can’t see your form or adjust to you."
+        title: "No Personal Support", 
+        description: "Apps can't correct your form.",
+        icon: "user-x"
       },
       {
-        title: "No Steady Progress",
-        description: "Without the right plan and accountability, results fade"
+        title: "Hard to Stick With",
+        description: "Without guidance, motivation fades.",
+        icon: "trending-down"
       }
     ]
   },
 
   benefits: {
     title: "Why This Matters",
-    subtitle: "Health-focused training isn't just safer-it's more effective for long-term results.",
+    subtitle: "The right approach makes all the difference.",
     benefits: [
       {
-        title: "Prevent Injuries Before They Start",
-        description: "Every plan is designed around your health history"
+        title: "Stay Injury-Free",
+        description: "Every plan is built around your body and history."
       },
       {
-        title: "See Results You Can Feel",
-        description: "Personalized programs adapt to your progress each week."
+        title: "See & Feel Results",
+        description: "Stronger, more energy, better posture-fast."
       },
       {
-        title: "Stay Healthy for the Long Run",
-        description: "Build strength and habits that keep you independent."
+        title: "Enjoy Life More",
+        description: "Keep up with grandkids, travel, hobbies."
       }
     ]
   },
 
   solution: {
     title: "Our Solution",
-    subtitle: "Think of us as the safest way to get fitter-without leaving home. Our physiotherapist-trainers bring clinical knowledge and proven exercise methods to you, so you can move better, stay active, and enjoy life without pain.",
+    subtitle: "We make staying active simple, safe, and fun-without leaving home.\nOur expert Physiotherapist trainers know how to work with your body, keep it safe, and make workouts enjoyable.",
     features: [
       {
         title: "Safe",
-        description: "Trained to protect your joints, prevent injuries, and support recovery."
+        description: "Protect your joints & prevent injuries."
       },
       {
         title: "Convenient", 
-        description: "Sessions at home-no travel, no gym crowds"
+        description: "No travel, no gym crowds."
       },
       {
-        title: "Effective",
-        description: "Programs grow with you, so you keep improving."
+        title: "Fun & Effective",
+        description: "Programs that grow with you."
       }
     ]
   },
 
+  nutrition: {
+    title: "The Fitness Secret Most People Ignore",
+    subtitle: "Hint: It's on your plate. Exercise is only 30% of the equation.",
+    benefits: [
+      "Personalized nutrition tips for your lifestyle and body",
+      "Easy, realistic meal ideas (no extreme diets)",
+      "Guidance that works with your fitness plan"
+    ],
+    cta: "Nutrition Support coming soon",
+    closingLine: "Food is fuel. We'll help you use it right.",
+    image: "nutrition-hero.jpg",
+    emojis: ["🥗", "🍎", "🥑", "🥦", "🍗", "🥜", "🍓", "🥚"]
+  },
+
+
   howItWorks: {
-    title: "How It Works",
-    subtitle: "Getting started is simple. We handle the matching and scheduling-you focus on getting stronger.",
+    title: "How We Work",
+    subtitle: "Getting started is simple. We handle the matching and scheduling - you focus on getting stronger.",
     steps: [
       {
         step: 1,
         title: "Tell Us About You",
-        description: "Share your goals, health history, and preferences."
+        description: "Share your goals and health story.",
+        icon: "user"
       },
       {
         step: 2,
-        title: "Get Your Perfect Match",
-        description: "We connect you with a physio-trainer who fits your needs."
+        title: "Meet Your Coach",
+        description: "We'll match you with your perfect fit.",
+        icon: "users"
       },
       {
         step: 3,
-        title: "Book in Minutes", 
-        description: "Pick times that work for you."
+        title: "Book in Minutes",
+        description: "Choose times that work for you.",
+        icon: "calendar"
       },
       {
         step: 4,
-        title: "See & Feel the Change",
-        description: "Track your progress and enjoy moving with ease."
+        title: "Feel the Difference",
+        description: "More energy, less pain, more fun.",
+        icon: "heart"
       }
     ]
   },
 
   differentiators: {
-    title: "Why We're Different",
-    subtitle: "We're not just another fitness app. We're a healthcare-first platform built by professionals who understand the importance of safe, effective training.",
+    title: "Not a Gym. Not an App. 100% Your Way.",
+    subtitle: "We're different because we put you first.",
     features: [
       {
-        title: "Only Licensed Physiotherapists",
-        description: "Every trainer is a qualified healthcare professional."
+        title: "Personal Coach Match",
+        description: "Chosen specifically for your needs and goals.",
+        icon: "users"
       },
       {
-        title: "Safety Comes First",
-        description: "Exercises screened for your health needs."
+        title: "Safe & Joint-Friendly",
+        description: "Exercises designed specifically for your body.",
+        icon: "shield"
       },
       {
-        title: "Clear, Fair Pricing",
-        description: "No surprises-just professional care at a fair rate."
+        title: "Nutrition + Fitness",
+        description: "Complete health plan for better results.",
+        icon: "utensils"
       },
       {
-        title: "Consistent Support",
-        description: "Work with the same trainer who knows your body."
+        title: "At Home or Online",
+        description: "Your choice, your convenience.",
+        icon: "monitor"
       }
+    ]
+  },
+
+  story: {
+    title: "Real People. Real Results.",
+    testimonial: {
+      name: "Anita, 54",
+      before: "Stiff knees, tired after 10 minutes of walking",
+      after: "Playing with her grandkids pain-free and smiling",
+      duration: "After 8 weeks",
+      image: "anita.jpg"
+    },
+    stats: [
+      { value: "87%", label: "reported less joint pain" },
+      { value: "92%", label: "feel more energetic" },
+      { value: "95%", label: "would recommend to a friend" }
     ]
   },
 
@@ -157,10 +221,21 @@ export const content = {
   },
 
   finalCTA: {
-    title: "Start Moving Better, Feeling Better",
-    subtitle: "Join our waitlist to be first in line for Healio’s personalized, at-home strength and mobility coaching-designed just for you",
-    ctaText: "Join The Waitlist",
-    privacyText: "Join the waitlist and get 50% off your first session\nNo spam. Unsubscribe anytime."
+    title: "Your Healthier Future Starts Today",
+    subtitle: "No more guesswork, no more frustration. Just real results with expert guidance.",
+    primaryCta: {
+      text: "Find Your Perfect Coach",
+      subtext: "Get matched in 2 minutes"
+    },
+    secondaryCta: {
+      text: "Schedule a Free Call",
+      subtext: "Chat with our team"
+    },
+    trustBadges: [
+      "No credit card required",
+      "Cancel anytime",
+      "50% off first session"
+    ]
   },
 
   footer: {

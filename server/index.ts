@@ -1,6 +1,11 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -35,6 +40,19 @@ app.use((req, res, next) => {
 
   next();
 });
+
+// In development, Vite's middleware will handle the client-side routing
+if (app.get('env') === 'production') {
+  // Only serve static files in production
+  app.get('*', (req, res, next) => {
+    // Skip API routes and static files
+    if (req.path.startsWith('/api') || req.path.includes('.')) {
+      return next();
+    }
+    // Serve index.html for all other routes
+    res.sendFile(path.join(process.cwd(), 'client/index.html'));
+  });
+}
 
 (async () => {
   const server = await registerRoutes(app);
