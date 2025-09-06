@@ -10,12 +10,11 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Enable CORS for all routes
+// Enable CORS using explicit allowlist for separated deployments
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean);
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://your-production-domain.com' 
-    : 'http://localhost:5173', // Default Vite dev server port
-  credentials: true
+  origin: allowedOrigins.length ? allowedOrigins : true,
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -51,16 +50,16 @@ app.use((req, res, next) => {
   next();
 });
 
-// In development, Vite's middleware will handle the client-side routing
-if (app.get('env') === 'production') {
-  // Only serve static files in production
+// When separating deployments, do NOT serve the client by default in production.
+// If you want the backend to also serve the built client, set SERVE_CLIENT=true.
+const shouldServeClient = process.env.SERVE_CLIENT === 'true';
+if (app.get('env') === 'production' && shouldServeClient) {
+  // Only if explicitly enabled, fall back to serving the client
   app.get('*', (req, res, next) => {
-    // Skip API routes and static files
     if (req.path.startsWith('/api') || req.path.includes('.')) {
       return next();
     }
-    // Serve index.html for all other routes
-    res.sendFile(path.join(process.cwd(), 'client/index.html'));
+    res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));
   });
 }
 
@@ -80,7 +79,8 @@ if (app.get('env') === 'production') {
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
     await setupVite(app, server);
-  } else {
+  } else if (shouldServeClient) {
+    // only serve static when explicitly enabled
     serveStatic(app);
   }
 

@@ -8,16 +8,16 @@ const __dirname = dirname(__filename);
 
 export default defineConfig({
   plugins: [react()],
+  root: resolve(__dirname, 'client'), // make root absolute
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'client/src'),
+      '@': resolve(__dirname, 'client', 'src'),
       '@shared': resolve(__dirname, 'shared'),
       '@assets': resolve(__dirname, 'attached_assets')
     }
   },
-  root: './client',
   build: {
-    outDir: '../dist/public',
+    outDir: resolve(__dirname, 'dist', 'public'),
     emptyOutDir: true,
   },
   server: {
