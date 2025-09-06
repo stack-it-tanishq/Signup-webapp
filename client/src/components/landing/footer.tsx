@@ -39,12 +39,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">H</span>
-              </div>
-              <span className="text-xl font-semibold text-white" data-testid="footer-logo">
-                {content.footer.companyName}
-              </span>
+              <img 
+                src="/logo.png" 
+                alt="Healio Logo" 
+                className="h-12 w-auto"
+                data-testid="footer-logo"
+              />
             </div>
             <p className="text-gray-400 mb-4 max-w-md" data-testid="footer-description">
               {content.footer.description}
