@@ -13,7 +13,7 @@ export default function FAQ() {
   const ref = useScrollAnimation();
 
   return (
-    <section id="faq" className="py-16 lg:py-24 bg-white" ref={ref} data-testid="faq-section">
+    <section id="faq" className="py-16 lg:py-24 bg-off-white" ref={ref} data-testid="faq-section">
       <Container>
         <SectionHeading
           title={content.faq.title}

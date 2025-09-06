@@ -1,5 +1,7 @@
 import Container from "@/components/ui/container";
 import { content } from "@/lib/content";
+import { Link } from "wouter";
+import { smoothScrollTo } from "@/utils/smooth-scroll";
 
 export default function Footer() {
   const scrollToSection = (id: string) => {
@@ -14,16 +16,21 @@ export default function Footer() {
   };
 
   const quickLinks = [
-    { href: "problem", label: "Problem" },
-    { href: "benefits", label: "Benefits" },
-    { href: "solution", label: "Solution" },
-    { href: "faq", label: "FAQ" },
+    { href: "#problem", label: "Problem" },
+    { href: "#nutrition", label: "Benefits" },
+    { href: "#hero", label: "Solution" },
+    { href: "#faq", label: "FAQ" },
   ];
 
+  const handleFooterClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    smoothScrollTo(id, 80);
+  };
+
   const legalLinks = [
-    { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Terms of Service" },
-    { href: "#", label: "Contact Us" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-of-service", label: "Terms of Service" },
+    { href: "#contact", label: "Contact Us", onClick: () => scrollToSection("contact") },
   ];
 
   return (
@@ -32,12 +39,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
-              <span className="text-xl font-semibold text-white" data-testid="footer-logo">
-                {content.footer.companyName}
-              </span>
+              <img 
+                src="/logo.png" 
+                alt="Healio Logo" 
+                className="h-12 w-auto"
+                data-testid="footer-logo"
+              />
             </div>
             <p className="text-gray-400 mb-4 max-w-md" data-testid="footer-description">
               {content.footer.description}
@@ -47,17 +54,20 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="hover:text-primary-teal transition-colors duration-200"
-                    data-testid={`footer-link-${link.href}`}
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
+              {quickLinks.map((link) => {
+                const id = link.href.replace('#', '');
+                return (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                      onClick={(e) => handleFooterClick(e, id)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -65,14 +75,15 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Legal</h3>
             <ul className="space-y-2">
               {legalLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="hover:text-primary-teal transition-colors duration-200"
-                    data-testid={`footer-legal-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                <li key={link.href}>
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={link.onClick}
+                    className="text-gray-400 hover:text-white transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -81,7 +92,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400" data-testid="footer-copyright">
-            &copy; 2024 {content.footer.companyName}. All rights reserved.
+            &copy; 2025 {content.footer.companyName}. All rights reserved.
           </p>
         </div>
       </Container>

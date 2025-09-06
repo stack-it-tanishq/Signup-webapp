@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Container from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { handleSmoothScroll } from "@/utils/smooth-scroll";
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,34 +17,18 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToForm = () => {
-    document.getElementById("final-cta")?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-    setIsMenuOpen(false);
-  };
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-    }
+  const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    handleSmoothScroll(e, 80);
     setIsMenuOpen(false);
   };
 
   const navLinks = [
-    { href: "problem", label: "Problem" },
-    { href: "benefits", label: "Benefits" },
-    { href: "solution", label: "Solution" },
-    { href: "how-it-works", label: "How It Works" },
-    { href: "why-us", label: "Why Us" },
-    { href: "trust", label: "Trust" },
-    { href: "faq", label: "FAQ" },
+    { href: "#why-us", label: "Why Us" },
+    { href: "#nutrition", label: "Benefits" },
+    { href: "#how-it-works", label: "How We Work" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#contact", label: "Contact Us" },
   ];
 
   return (
@@ -60,32 +45,36 @@ export default function Nav() {
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary-teal rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
-              </div>
-              <span className="text-xl font-semibold text-charcoal">SafeFit</span>
+              <img 
+                src="/logo.png" 
+                alt="Healio Logo" 
+                className="h-12 w-auto"
+                data-testid="nav-logo"
+              />
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <button
+              <a
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
+                href={link.href}
+                onClick={handleNavigation}
                 className="text-charcoal hover:text-primary-teal transition-colors duration-200"
-                data-testid={`nav-link-${link.href}`}
+                data-testid={`nav-link-${link.href.replace('#', '')}`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
-            <Button
-              onClick={scrollToForm}
-              className="bg-accent-coral text-white hover:bg-accent-coral/90 focus:ring-2 focus:ring-primary-teal focus:ring-offset-2 transition-all duration-200 transform hover:scale-105"
+            <a
+              href="#final-cta"
+              onClick={handleNavigation}
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-md hover:bg-accent-coral/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-teal"
               data-testid="nav-cta-button"
             >
               Join the Waitlist
-            </Button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -107,22 +96,24 @@ export default function Nav() {
           <div className="md:hidden bg-white border-t border-gray-100 py-4" data-testid="mobile-menu">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
-                <button
+                <a
                   key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-charcoal hover:text-primary-teal transition-colors duration-200 text-left"
-                  data-testid={`mobile-nav-link-${link.href}`}
+                  href={link.href}
+                  onClick={handleNavigation}
+                  className="text-charcoal hover:text-primary-teal transition-colors duration-200 px-4 py-2 text-left"
+                  data-testid={`mobile-nav-link-${link.href.replace('#', '')}`}
                 >
                   {link.label}
-                </button>
+                </a>
               ))}
-              <Button
-                onClick={scrollToForm}
-                className="bg-accent-coral text-white hover:bg-accent-coral/90 self-start"
+              <a
+                href="#final-cta"
+                onClick={handleNavigation}
+                className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-accent-coral rounded-md hover:bg-accent-coral/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-teal self-start mx-4"
                 data-testid="mobile-nav-cta-button"
               >
                 Join the Waitlist
-              </Button>
+              </a>
             </div>
           </div>
         )}

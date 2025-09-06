@@ -1,6 +1,11 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -36,6 +41,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// In development, Vite's middleware will handle the client-side routing
+if (app.get('env') === 'production') {
+  // Only serve static files in production
+  app.get('*', (req, res, next) => {
+    // Skip API routes and static files
+    if (req.path.startsWith('/api') || req.path.includes('.')) {
+      return next();
+    }
+    // Serve index.html for all other routes
+    res.sendFile(path.join(process.cwd(), 'client/index.html'));
+  });
+}
+
 (async () => {
   const server = await registerRoutes(app);
 
@@ -57,10 +75,9 @@ app.use((req, res, next) => {
   }
 
   // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
+  // Using port 3000 by default to avoid conflicts with system services
+  // This serves both the API and the client
+  const port = parseInt(process.env.PORT || '3000', 10);
   server.listen({
     port,
     host: "0.0.0.0",
