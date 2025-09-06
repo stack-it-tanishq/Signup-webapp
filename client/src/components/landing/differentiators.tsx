@@ -1,38 +1,48 @@
-import Container from "@/components/ui/container";
-import SectionHeading from "@/components/ui/section-heading";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { content } from "@/lib/content";
-import { Award, Shield, DollarSign, Users } from "lucide-react";
+import { Users, Shield, Utensils, Monitor } from 'lucide-react';
+import { content } from '@/lib/content';
+import Container from '@/components/ui/container';
 
 export default function Differentiators() {
-  const ref = useScrollAnimation();
+  const icons = {
+    'users': Users,
+    'shield': Shield,
+    'utensils': Utensils,
+    'monitor': Monitor
+  };
 
-  const icons = [Award, Shield, DollarSign, Users];
   const colors = [
-    "text-primary-teal bg-primary-teal/10",
-    "text-secondary-sky bg-secondary-sky/10", 
-    "text-accent-coral bg-accent-coral/10",
-    "text-charcoal bg-gray-100"
+    'bg-blue-50 text-blue-600',
+    'bg-teal-50 text-teal-600',
+    'bg-amber-50 text-amber-600',
+    'bg-purple-50 text-purple-600'
   ];
 
   return (
-    <section id="why-us" className="py-16 lg:py-24 bg-white" ref={ref} data-testid="differentiators-section">
+    <section id="why-us" className="py-16 lg:py-24 bg-gray-50" data-testid="differentiators-section">
       <Container>
-        <SectionHeading
-          title={content.differentiators.title}
-          subtitle={content.differentiators.subtitle}
-        />
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
+            {content.differentiators.title}
+          </h2>
+          <p className="text-xl text-gray-600">
+            {content.differentiators.subtitle}
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 animate-on-scroll">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {content.differentiators.features.map((feature, index) => {
-            const Icon = icons[index];
+            const Icon = icons[feature.icon as keyof typeof icons] || Users;
             
             return (
-              <div key={index} className="text-center" data-testid={`differentiator-${index}`}>
-                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 ${colors[index]}`}>
-                  <Icon className="w-10 h-10" />
+              <div 
+                key={index} 
+                className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:-translate-y-1"
+                data-testid={`differentiator-${index}`}
+              >
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 mx-auto ${colors[index]}`}>
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold text-charcoal mb-3" data-testid={`differentiator-title-${index}`}>
+                <h3 className="text-xl font-bold text-charcoal mb-3" data-testid={`differentiator-title-${index}`}>
                   {feature.title}
                 </h3>
                 <p className="text-gray-600" data-testid={`differentiator-description-${index}`}>

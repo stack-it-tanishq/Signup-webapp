@@ -12,9 +12,9 @@ export default function Solution() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div className="animate-on-scroll">
             <img
-              src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+              src="Image5.jpeg"
               alt="Professional physiotherapist with equipment"
-              className="rounded-2xl shadow-lg w-full h-auto"
+              className="rounded-2xl shadow-lg w-full h-auto transform hover:scale-105 transition-transform duration-300"
               data-testid="solution-image"
             />
           </div>
@@ -24,7 +24,12 @@ export default function Solution() {
               {content.solution.title}
             </h2>
             <p className="text-lg text-gray-600 mb-8" data-testid="solution-subtitle">
-              {content.solution.subtitle}
+              {content.solution.subtitle.split('Physiotherapist trainers').map((part, i) => (
+                <span key={i}>
+                  {i > 0 && <span className="text-primary-teal font-medium">Physiotherapist trainers</span>}
+                  {part}
+                </span>
+              ))}
             </p>
 
             <div className="space-y-6">

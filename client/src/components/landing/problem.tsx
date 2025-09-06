@@ -1,33 +1,46 @@
-import Container from "@/components/ui/container";
-import SectionHeading from "@/components/ui/section-heading";
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { content } from "@/lib/content";
-import { AlertTriangle, X, BarChart3 } from "lucide-react";
+import { Scale, UserX, TrendingDown } from 'lucide-react';
+import { content } from '@/lib/content';
+import SectionHeading from '@/components/ui/section-heading';
+import Container from '@/components/ui/container';
 
 export default function Problem() {
-  const ref = useScrollAnimation();
-
-  const icons = [AlertTriangle, X, BarChart3];
+  const icons = {
+    'scaling': Scale,
+    'user-x': UserX,
+    'trending-down': TrendingDown
+  };
 
   return (
-    <section id="problem" className="py-16 lg:py-24 bg-white" ref={ref} data-testid="problem-section">
+    <section id="problem" className="py-16 lg:py-24 bg-white" data-testid="problem-section">
       <Container>
-        <SectionHeading
-          title={content.problem.title}
-          subtitle={content.problem.subtitle}
-        />
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
+            {content.problem.title}
+          </h2>
+          <p className="text-xl text-gray-600">
+            {content.problem.subtitle}
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-on-scroll">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {content.problem.issues.map((issue, index) => {
-            const Icon = icons[index];
-            const colors = ["text-red-500 bg-red-100", "text-orange-500 bg-orange-100", "text-gray-500 bg-gray-100"];
+            const Icon = icons[issue.icon as keyof typeof icons] || Scale;
+            const colors = [
+              'bg-red-50 text-red-600',
+              'bg-amber-50 text-amber-600',
+              'bg-blue-50 text-blue-600'
+            ];
             
             return (
-              <div key={index} className="text-center" data-testid={`problem-issue-${index}`}>
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 ${colors[index]}`}>
-                  <Icon className="w-8 h-8" />
+              <div 
+                key={index} 
+                className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                data-testid={`problem-issue-${index}`}
+              >
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${colors[index]}`}>
+                  <Icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-semibold text-charcoal mb-3" data-testid={`problem-title-${index}`}>
+                <h3 className="text-xl font-bold text-charcoal mb-3" data-testid={`problem-title-${index}`}>
                   {issue.title}
                 </h3>
                 <p className="text-gray-600" data-testid={`problem-description-${index}`}>
