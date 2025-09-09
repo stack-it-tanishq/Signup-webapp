@@ -41,7 +41,19 @@ export default function Nav() {
       data-testid="navigation"
     >
       <Container>
-        <div className="flex items-center justify-end h-16">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/logo.png" 
+                alt="Healio Logo" 
+                className="h-12 w-auto"
+                data-testid="nav-logo"
+              />
+            </div>
+          </div>
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
