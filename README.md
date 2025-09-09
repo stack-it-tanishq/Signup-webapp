@@ -6,7 +6,7 @@ A modern full-stack web application for managing email subscriptions with email 
 
 - User registration with email verification
 - Secure token-based verification flow
-- In-memory data storage (no database required)
+- PostgreSQL database integration with Drizzle ORM
 - TypeScript for type safety
 - Vite for fast development and building
 - Tailwind CSS for styling
@@ -14,6 +14,7 @@ A modern full-stack web application for managing email subscriptions with email 
 ## Prerequisites
 
 - Node.js (v16 or later)
+- PostgreSQL (v14 or later)
 - npm or yarn
 
 ## Setup Instructions
@@ -31,13 +32,32 @@ cd Signup-webapp
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Set up the database
+
+1. Make sure PostgreSQL is running on your system
+2. Create a new database:
+   ```bash
+   createdb signup_app
+   ```
+
+### 4. Configure environment variables
 
 Create a `.env` file in the root directory with the following content:
 
 ```env
+# Database
+DATABASE_URL=postgresql://your_username@localhost:5432/signup_app?schema=public
+
 # Environment
 NODE_ENV=development
+```
+
+Replace `your_username` with your PostgreSQL username.
+
+### 5. Run database migrations
+
+```bash
+npm run migrate
 ```
 
 ## Running the Application
