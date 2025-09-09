@@ -15,32 +15,77 @@ export default function Contact() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+  
     try {
-      // TODO: Hook up to backend or email service
-      console.log({ name, email, message });
-      
-      // Show success toast
-      toast({
-        title: "📩 Message sent!",
-        description: "Our team will reply within 24 hours - keep an eye on your inbox.",
-        duration: 5000,
+      const payload = { name: name.trim(), email: email.trim(), message: message.trim() };
+  
+      // Basic client-side guard
+      if (!payload.name || !payload.email || !payload.message) {
+        toast({
+          title: "Missing fields",
+          description: "Please fill all required fields.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+  
+      console.log('Submitting contact form with payload:', payload);
+      const res = await fetch("http://localhost:4000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-      
-      // Clear form
-      setName("");
-      setEmail("");
-      setMessage("");
-    } catch (error) {
+
+      console.log('Response status:', res.status);
+      const responseData = await res.json().catch(() => ({}));
+      console.log('Response data:', responseData);
+  
+      if (res.ok) {
+        toast({
+          title: "📩 Message sent!",
+          description: "Our team will reply within 24 hours - keep an eye on your inbox.",
+          duration: 5000,
+        });
+  
+        // Clear form
+        setName("");
+        setEmail("");
+        setMessage("");
+      } else {
+        // try to parse JSON error body
+        const body = await res.json().catch(() => ({}));
+        const serverMessage = body?.error || body?.message || "Failed to send message";
+  
+        // If Zod validation errors returned, show first one
+        if (Array.isArray(body?.errors) && body.errors.length > 0) {
+          const firstErr = body.errors[0];
+          toast({
+            title: "Validation error",
+            description: firstErr?.message || JSON.stringify(firstErr),
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: serverMessage,
+            variant: "destructive",
+          });
+        }
+      }
+    } catch (err) {
+      console.error("Contact submit error:", err);
+      const errorMessage = err instanceof Error ? err.message : "Unknown error occurred";
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description: `Failed to send message: ${errorMessage}`,
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <section id="contact" className="relative py-16 lg:py-24 overflow-hidden" data-testid="contact-section">
