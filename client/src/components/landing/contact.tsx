@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import { config } from "@/config";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -31,10 +32,15 @@ export default function Contact() {
       }
   
       console.log('Submitting contact form with payload:', payload);
-      const res = await fetch("http://localhost:4000/contact", {
+      // Using relative URL that will be proxied by Vite
+      const apiUrl = '/api/contact';
+      console.log('Using API URL:', apiUrl);
+      
+      const res = await fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        credentials: 'include', // Include cookies if needed
       });
 
       console.log('Response status:', res.status);
