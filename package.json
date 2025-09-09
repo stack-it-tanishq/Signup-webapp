@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
- "scripts": {
-  "dev": "NODE_ENV=development tsx server/index.ts",
-  "dev:server": "NODE_ENV=development tsx server/index.ts",
-  "dev:client": "vite",
-  "build:client": "vite build",
-  "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=cjs --outfile=dist/server/index.js",
-  "build:all": "npm run build:client && npm run build:server",
-  "start:server": "NODE_ENV=production node dist/server/index.js",
-  "start": "npm run start:server",
-  "check": "tsc"
-},
+  "scripts": {
+    "dev": "NODE_ENV=development tsx server/index.ts",
+    "dev:server": "NODE_ENV=development tsx server/index.ts",
+    "dev:client": "vite",
+    "build:client": "vite build",
+    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=cjs --outfile=dist/server/index.js",
+    "build:all": "npm run build:client && npm run build:server",
+    "start:server": "NODE_ENV=production node dist/server/index.js",
+    "start": "npm run start:server",
+    "check": "tsc"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",
