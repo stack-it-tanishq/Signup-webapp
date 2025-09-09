@@ -11,7 +11,15 @@ export default function TermsOfService() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
         <Container className="py-6">
-          <div className="flex justify-end">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <img 
+                src="/logo.png" 
+                alt="Healio Logo" 
+                className="h-12 w-auto"
+                data-testid="terms-logo"
+              />
+            </div>
             <Button asChild variant="ghost">
               <Link href="/">Back to Home</Link>
             </Button>

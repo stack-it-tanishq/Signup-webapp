@@ -31,8 +31,8 @@ export async function setupVite(app: Express, server: Server) {
     configFile: false,
     customLogger: {
       ...viteLogger,
-      error: (msg: string, options?: unknown) => {
-        viteLogger.error(msg, options as any);
+      error: (msg, options) => {
+        viteLogger.error(msg, options);
         process.exit(1);
       },
     },
@@ -67,8 +67,7 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  // In production, the client build is emitted to dist/public (see root vite.config.ts)
-  const distPath = path.resolve(process.cwd(), "dist", "public");
+  const distPath = path.resolve(import.meta.dirname, "public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
