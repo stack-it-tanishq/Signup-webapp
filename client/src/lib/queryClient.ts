@@ -12,11 +12,18 @@ export async function apiRequest(
   url: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const res = await fetch(url, {
+  // Use VITE_API_URL injected at build time (Netlify) or fall back to empty string.
+  // This ensures calls to "/api/..." become "https://api.healio.fit/api/..." in the bundle.
+  const API_BASE = (import.meta.env.VITE_API_URL as string) || '';
+
+  // If caller passed a relative API path (starts with '/api'), prefix it.
+  const finalUrl = url.startsWith('/api') ? `${API_BASE}${url}` : url;
+
+  const res = await fetch(finalUrl, {
     method,
-    headers: data ? { "Content-Type": "application/json" } : {},
+    headers: data ? { 'Content-Type': 'application/json' } : {},
     body: data ? JSON.stringify(data) : undefined,
-    credentials: "include",
+    credentials: 'include',
   });
 
   await throwIfResNotOk(res);

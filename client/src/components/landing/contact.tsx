@@ -33,7 +33,8 @@ export default function Contact() {
   
       console.log('Submitting contact form with payload:', payload);
       // Using relative URL that will be proxied by Vite
-      const apiUrl = '/api/contact';
+      const API_BASE = (import.meta.env.VITE_API_URL as string) || '';
+      const apiUrl = `${API_BASE}/api/contact`;
       console.log('Using API URL:', apiUrl);
       
       const res = await fetch(apiUrl, {
