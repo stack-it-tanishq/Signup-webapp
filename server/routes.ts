@@ -53,7 +53,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/contact", async (req, res) => {
+  app.post("/api/contact", async (req, res) => {
     try {
       const data = contactSchema.parse(req.body);
   
