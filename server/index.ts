@@ -11,27 +11,48 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // CORS configuration
+// CORS configuration (minimal, safe)
 const corsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-    // Allow requests with no origin (like mobile apps or curl requests)
+    // Allow non-browser requests (curl, mobile)
     if (!origin) return callback(null, true);
 
-    const allowedOrigins = [
-      'http://localhost:3000',  // Default Vite dev server
-      'http://localhost:4000',  // Current server port
-      ...(process.env.ALLOWED_ORIGINS?.split(',').map(s => s.trim()).filter(Boolean) || [])
-    ];
+    // canonical allowed origins (add more via ALLOWED_ORIGINS env, comma separated)
+    const defaultAllowed = [
+      'http://localhost:3000',   // dev
+      'http://localhost:5173',   // vite dev
+      'http://localhost:4000',   // local server
+      process.env.CLIENT_URL || '', // e.g. http://localhost:5173 or https://healio.fit if set
+      'https://healio.fit',
+      'https://www.healio.fit'
+    ].filter(Boolean);
 
-    if (process.env.NODE_ENV !== 'production' || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.warn(`Blocked request from origin: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
+    const extra = (process.env.ALLOWED_ORIGINS || '')
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    const allowedOrigins = defaultAllowed.concat(extra);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+
+    // If you want a wildcard under your domain (example: allow any subdomain of healio.fit)
+    // you can use: if (origin.endsWith('.healio.fit')) return callback(null, true);
+    console.warn(`Blocked request from origin: ${origin}`);
+    return callback(new Error('Not allowed by CORS'));
   },
   credentials: true,
-  optionsSuccessStatus: 200 // Some legacy browsers (IE11, various SmartTVs) choke on 204
+  // keep 200 for legacy; modern browsers accept 204 as well
+  optionsSuccessStatus: 200
 };
+
+// Use CORS middleware
+app.use(cors(corsOptions));
+// Ensure preflight OPTIONS requests are handled using the same CORS options
+app.options('*', cors(corsOptions));
+
 
 app.use(cors(corsOptions));
 
@@ -85,12 +106,18 @@ if (app.get('env') === 'production' && shouldServeClient) {
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
+    const status = err?.status || err?.statusCode || 500;
+    const message = err?.message || "Internal Server Error";
+  
+    // respond to client
     res.status(status).json({ message });
-    throw err;
+  
+    // log server-side (do NOT re-throw; re-throwing after response can cause crashes / 500s)
+    console.error('Unhandled error:', { status, message, stack: err?.stack });
+  
+    // do not call next(err) or throw — we've already responded
   });
+  
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route
