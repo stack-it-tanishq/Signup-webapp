@@ -11,7 +11,7 @@ export default defineConfig(({ command, mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '');
-  
+  console.log('VITE_API_URL (process.env):', process.env.VITE_API_URL, ' loadEnv:', env.VITE_API_URL);
   return {
   plugins: [react()],
   root: resolve(__dirname, 'client'), // make root absolute
@@ -46,8 +46,9 @@ export default defineConfig(({ command, mode }) => {
   ...(command === 'build' ? {
     base: '',
     define: {
-      'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || '')
+      'import.meta.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || env.VITE_API_URL || '')
     }
   } : {})
   };
 });
+
