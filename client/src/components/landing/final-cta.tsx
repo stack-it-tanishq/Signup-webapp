@@ -18,7 +18,7 @@ interface TrustBadgeProps {
   icon: React.ComponentType<{ className?: string }>;
   text: string;
 }
-
+//Test commit
 const TrustBadge = ({ icon: Icon, text }: TrustBadgeProps) => (
   <div className="flex items-center gap-2 text-sm text-gray-100">
     <Icon className="w-4 h-4" />
